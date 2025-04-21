@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Race Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-black text-white flex flex-col items-center justify-center min-h-screen p-4">
+    <h1 class="text-4xl font-bold mb-4 text-center text-blue-400">Space Race</h1>
+    
+    <div class="relative w-full max-w-2xl">
+        <!-- Game stats display -->
+        <div class="flex justify-between mb-2">
+            <div class="text-xl">Score: <span id="score">0</span></div>
+            <div class="text-xl">High Score: <span id="highScore">0</span></div>
+        </div>
+        
+        <!-- Game canvas -->
+        <canvas id="gameCanvas" class="border-2 border-blue-500 bg-gray-900 w-full"></canvas>
+        
+        <!-- Game controls for mobile -->
+        <div class="mt-4 grid grid-cols-3 gap-2 md:hidden">
+            <button id="leftBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">←</button>
+            <div class="grid grid-cols-1 gap-2">
+                <button id="upBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">↑</button>
+                <button id="downBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">↓</button>
+            </div>
+            <button id="rightBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">→</button>
+        </div>
+    </div>
+    
+    <!-- Game instructions -->
+    <div class="mt-6 text-center max-w-2xl">
+        <h2 class="text-2xl font-bold mb-2 text-blue-400">How to Play</h2>
+        <p class="mb-2">Use arrow keys or WASD to move your spaceship. Avoid obstacles and survive as long as possible!</p>
+        <p>Collect power-ups for special abilities.</p>
+    </div>
+    
+    <!-- Game over modal -->
+    <div id="gameOverModal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-10">
+        <div class="bg-gray-800 p-8 rounded-lg max-w-md w-full text-center">
+            <h2 class="text-3xl font-bold mb-4 text-red-500">Game Over</h2>
+            <p class="text-xl mb-4">Your score: <span id="finalScore">0</span></p>
+            <button id="restartBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full text-lg">Play Again</button>
+        </div>
+    </div>
+    
+    <!-- Game start modal -->
+    <div id="startModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-10">
+        <div class="bg-gray-800 p-8 rounded-lg max-w-md w-full text-center">
+            <h2 class="text-3xl font-bold mb-4 text-blue-400">Space Race</h2>
+            <p class="text-xl mb-6">Navigate through space, avoid obstacles, and survive as long as possible!</p>
+            <button id="startBtn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full text-lg">Start Game</button>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
