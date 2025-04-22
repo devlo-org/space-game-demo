@@ -9,6 +9,12 @@ const GAME_CONFIG = {
     DIFFICULTY_INCREASE_RATE: 0.0001, // Per frame
 };
 
+// Theme configuration
+const THEME_CONFIG = {
+    STORAGE_KEY: 'spaceRaceTheme',
+    DEFAULT_THEME: 'dark',
+};
+
 // Game state
 let gameState = {
     isRunning: false,
@@ -35,6 +41,11 @@ const restartBtn = document.getElementById('restartBtn');
 const startModal = document.getElementById('startModal');
 const startBtn = document.getElementById('startBtn');
 
+// Theme toggle elements
+const themeToggle = document.getElementById('themeToggle');
+const sunIcon = document.getElementById('sunIcon');
+const moonIcon = document.getElementById('moonIcon');
+
 // Mobile controls
 const leftBtn = document.getElementById('leftBtn');
 const rightBtn = document.getElementById('rightBtn');
@@ -53,10 +64,45 @@ function resizeCanvas() {
     }
 }
 
+// Theme functions
+function initTheme() {
+    // Get saved theme or use default
+    const savedTheme = localStorage.getItem(THEME_CONFIG.STORAGE_KEY) || THEME_CONFIG.DEFAULT_THEME;
+    setTheme(savedTheme);
+    
+    // Set up theme toggle event listener
+    themeToggle.addEventListener('click', toggleTheme);
+}
+
+function setTheme(theme) {
+    // Apply theme to document
+    if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+        moonIcon.classList.add('hidden');
+        sunIcon.classList.remove('hidden');
+    }
+    
+    // Save theme preference
+    localStorage.setItem(THEME_CONFIG.STORAGE_KEY, theme);
+}
+
+function toggleTheme() {
+    const currentTheme = localStorage.getItem(THEME_CONFIG.STORAGE_KEY) || THEME_CONFIG.DEFAULT_THEME;
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+}
+
 // Initialize the game
 function initGame() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
+    
+    // Initialize theme
+    initTheme();
     
     // Set high score display
     highScoreDisplay.textContent = gameState.highScore;

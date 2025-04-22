@@ -14,6 +14,7 @@ A browser-based space race game where players navigate a spaceship through space
 - Progressive difficulty that increases over time
 - Particle effects for collisions and explosions
 - Local storage for high score tracking
+- Theme toggle between light and dark modes
 
 ## Game Mechanics
 
@@ -27,6 +28,7 @@ A browser-based space race game where players navigate a spaceship through space
 ### Getting Started
 1. Open `index.html` in a web browser
 2. Click the "Start Game" button on the welcome screen
+3. Use the theme toggle button in the top-right corner to switch between light and dark modes
 
 ### Controls
 - **Keyboard Controls:**
