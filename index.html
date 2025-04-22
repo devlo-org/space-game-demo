@@ -7,7 +7,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-black text-white flex flex-col items-center justify-center min-h-screen p-4">
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+<div class="theme-toggle" id="themeToggle" title="Toggle light/dark theme">
+        <!-- Sun icon (for dark mode) -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
+        </svg>
+        <!-- Moon icon (for light mode) -->
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="hidden">
+            <path d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" />
+        </svg>
+    </div>
     <h1 class="text-4xl font-bold mb-4 text-center text-blue-400">Space Race</h1>
     
     <div class="relative w-full max-w-2xl">
@@ -18,16 +28,16 @@
         </div>
         
         <!-- Game canvas -->
-        <canvas id="gameCanvas" class="border-2 border-blue-500 bg-gray-900 w-full"></canvas>
+<canvas id="gameCanvas" class="border-2 w-full"></canvas>
         
         <!-- Game controls for mobile -->
-        <div class="mt-4 grid grid-cols-3 gap-2 md:hidden">
-            <button id="leftBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">←</button>
+<div class="mt-4 grid grid-cols-3 gap-2 md:hidden">
+            <button id="leftBtn" class="game-button font-bold py-2 px-4 rounded">←</button>
             <div class="grid grid-cols-1 gap-2">
-                <button id="upBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">↑</button>
-                <button id="downBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">↓</button>
+                <button id="upBtn" class="game-button font-bold py-2 px-4 rounded">↑</button>
+                <button id="downBtn" class="game-button font-bold py-2 px-4 rounded">↓</button>
             </div>
-            <button id="rightBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">→</button>
+            <button id="rightBtn" class="game-button font-bold py-2 px-4 rounded">→</button>
         </div>
     </div>
     
@@ -39,20 +49,20 @@
     </div>
     
     <!-- Game over modal -->
-    <div id="gameOverModal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-10">
-        <div class="bg-gray-800 p-8 rounded-lg max-w-md w-full text-center">
+<div id="gameOverModal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-10">
+        <div class="modal-content p-8 rounded-lg max-w-md w-full text-center">
             <h2 class="text-3xl font-bold mb-4 text-red-500">Game Over</h2>
             <p class="text-xl mb-4">Your score: <span id="finalScore">0</span></p>
-            <button id="restartBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full text-lg">Play Again</button>
+            <button id="restartBtn" class="game-button font-bold py-2 px-6 rounded-full text-lg">Play Again</button>
         </div>
     </div>
     
     <!-- Game start modal -->
     <div id="startModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-10">
-        <div class="bg-gray-800 p-8 rounded-lg max-w-md w-full text-center">
+        <div class="modal-content p-8 rounded-lg max-w-md w-full text-center">
             <h2 class="text-3xl font-bold mb-4 text-blue-400">Space Race</h2>
             <p class="text-xl mb-6">Navigate through space, avoid obstacles, and survive as long as possible!</p>
-            <button id="startBtn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full text-lg">Start Game</button>
+<button id="startBtn" class="game-button font-bold py-2 px-6 rounded-full text-lg">Start Game</button>
         </div>
     </div>
     
